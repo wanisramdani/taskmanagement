@@ -1,0 +1,200 @@
+.app-body {
+    background: linear-gradient(95deg, #647dee, #0f121f);
+    font-family: ubuntu;
+    text-align: center;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+a,
+a:hover,
+a:visited {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: monospace;
+    text-align: center;
+    color: white !important;
+}
+
+ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+}
+
+ul li:hover>ul,
+ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    margin-left: 500px;
+}
+
+ul li ul li {
+    clear: both;
+    width: 100%;
+}
+
+.objects {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.obj {
+    margin-top: 10px;
+    border: 1px solid #00ffe5;
+    position: relative;
+    padding: 15px;
+}
+
+.obj .obj-name {
+    position: absolute;
+    background: #00ffe5;
+    right: 0%;
+    top: 0;
+    margin: 0;
+}
+
+.obj-name {
+    color: black !important;
+}
+
+p {
+    color: white;
+}
+
+.rules {
+    padding: 10px;
+}
+
+.rules .rules-info {
+    padding: 15px;
+    border: 1px solid #ff5722;
+    color: #ff5722;
+}
+
+.obj-list {
+    color: khaki;
+}
+
+.site-form {
+    display: inline-block;
+    text-align: center;
+    padding: 50px;
+    border: 1px solid #9ed2ff;
+}
+
+.site-form input,
+.site-form select {
+    display: block;
+    margin: 10px 0 0 0;
+    padding: 6px;
+}
+
+.site-form input[type='submit'] {
+    color: white;
+    background: #2299ff;
+    border: 0;
+    border-radius: 4px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #0e3690;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background: #03366b;
+}
+
+.dropbtn {
+    margin: 10px;
+}
+
+table {
+    text-align: center;
+}
+
+.table-header {
+    background: #171c32;
+}
+
+tbody {
+    background: #37384e
+}
+
+.obj-update {
+    position: absolute;
+    background: #05bac3;
+    right: 0%;
+    bottom: 0;
+    margin: 0;
+}
+
+.obj-delete {
+    position: absolute;
+    background: #ff0000;
+    right: 20%;
+    bottom: 0;
+    margin: 0;
+}
+
+th {
+    background: #26048e;
+}
+
+td {
+    color: white;
+    background: #2e2f46;
+}
+
+.table-responsive {
+    overflow-x: hidden !important;
+}
+
+a.dropdown-item {
+    color: black !important;
+}
+
+th {
+    color: white;
+}
+
+.modal-title,
+.modal-body {
+    color: black !important;
+}

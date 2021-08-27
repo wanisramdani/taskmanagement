@@ -1,0 +1,16 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy addClientForm form.helper %}
+
+{% block content %}
+
+
+<h2><b>Add Client</b></h2>
+<form class="site-form" acttions="{% url 'clients:addClient' %}" method="POST">
+    {% csrf_token %%}  
+    {{ addClientForm}}
+    <input type="submit" value="Submit">
+
+</form>
+
+{% endblock %}

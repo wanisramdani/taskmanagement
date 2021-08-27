@@ -1,0 +1,19 @@
+{% extends "layout/base.html" %} 
+{% load crispy_forms_tags %}
+{% crispy addSubTaskForm form.helper %}
+
+{% block content %}
+
+
+<h2><b>Add SubTask</b></h2>
+<form class="site-form" actions="{% url 'clients:addSubTask' %}" method="POST">
+    {% csrf_token %%}
+    {{ addSubTaskForm.title|as_crispy_field }}
+    {{ addSubTaskForm.priority|as_crispy_field }}
+    {{ addSubTaskForm.deadline|as_crispy_field }}
+    {{ addSubTaskForm.responsible_client|as_crispy_field }}
+    <input type="submit" value="Submit">
+    
+</form>
+
+{% endblock %}

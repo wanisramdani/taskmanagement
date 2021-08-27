@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %} {% block content %}
+
+<div class="rules">
+    <h1 class="rules-info"> Priority: 1 (low), 2 (mid), 3 (high)</h1>
+</div>
+
+<div class="table-title">
+    <div class="row">
+        <div class="col-sm-8"><h2><b>TASKS</b></h2></div>
+        <div class="col-sm-4">
+            <a type="button" href="{% url 'clients:addTask' %}" class="btn btn-info add-new"><i class="fa fa-plus"></i>New Task</a>
+        </div>
+    </div>
+</div>
+<div class="objects">
+    {% for Task in Tasks %}
+    <div class="obj">
+        <a class="obj-name"><b> {{ Task.title }} </b> </a>
+        <p>Priority: {{ Task.priority }} </p>
+        <p>Deadline: {{ Task.deadline }} </p>
+        <p>Responsible client: {{ Task.responsible_client}} </p>
+        <p>SubTasks: {% for subtask in Task.subTasks.all %}
+            <a href="{% url 'clients:subtaskProfile' id=subtask.id %}"> <b class="obj-list"> {{ subtask.title }}</b> </a>, {% endfor %}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

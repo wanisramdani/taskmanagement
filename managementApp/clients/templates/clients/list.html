@@ -1,0 +1,62 @@
+{% extends "layout/base.html" %} {% block content %}
+
+<div class="rules">
+    <h1 class="rules-info"> Priority: 1 (low), 2 (mid), 3 (high)</h1>
+</div>
+
+<h3> CLIENTS </h3>
+<div class="objects">
+    {% for client in clientsList%}
+    <div class="obj">
+        <a class="obj-name" > <b> {{ client.name }} </b> </a>
+        <p>Email: {{ client.email }}</p>
+        <p>phone number: {{ client.phoneNumber }}</p>
+        <p>Address: {{ client.address }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<h3> SUBTASKS </h3>
+<div class="objects">
+    {% for subTask in subTasks %}
+    <div class="obj">
+        <a class="obj-name"><b> {{ subTask.title }} </b></a>
+        <p>Priority: {{ subTask.priority }} </p>
+        <p>Deadline: {{ subTask.deadline }} </p>
+        <p>Responsible Client: {{ subTask.responsible_client}} </p>
+    </div>
+    {% endfor %}
+</div>
+
+<h3> TASK </h3>
+<div class="objects">
+    {% for Task in Tasks %}
+    <div class="obj">
+        <a class="obj-name"><b> {{ Task.title }} </b> </a>
+        <p>Priority: {{ Task.priority }} </p>
+        <p>Deadline: {{ Task.deadline }} </p>
+        <p>Responsible client: {{ Task.responsible_client}} </p>
+        <p>SubTasks: {% for subtask in Task.subTasks.all %}
+            <b class="obj-list"> {{ subtask.title }}</b>, {% endfor %}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+
+<h3> PROJECT </h3>
+<div class="objects">
+    {% for Project in Projects %}
+    <div class="obj">
+        <a class="obj-name"> <b> {{ Project.title }} </b> </a>
+        <p>Priority: {{ Project.priority }} </p>
+        <p>Deadline: {{ Project.deadline }} </p>
+        <p>responsible client: {{ Project.responsible_client}}</p>
+        <p>Tasks: {% for task in Project.tasks.all %}
+            <b class="obj-list"> {{ task.title }}</b>, {% endfor %}
+        </p>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy addClientForm form.helper %}
+{% block content %}
+
+<div class="container-lg">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2><b>CLIENTS</b></h2></div>
+                    <div class="col-sm-4">
+<!-- Button trigger modal for Add-->
+                            <a type="button" href="{% url 'clients:addClient' %}" class="btn btn-info add-new" data-toggle="modal" data-target="#addClientModal">
+                                <i class="fa fa-plus"></i>
+                                New Client
+                            </a>
+
+                            <!-- Add Modal -->
+                            <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                              Add Client
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form class="site-form" actions="{% url 'clients:addClient' %}" method="POST">
+                                            <div class="modal-body">                                                            
+                                                    {% csrf_token %%}  
+                                                    {{ addClientForm.name|as_crispy_field }}
+                                                    {{ addClientForm.email|as_crispy_field }}
+                                                    {{ addClientForm.phoneNumber|as_crispy_field }}
+                                                    {{ addClientForm.address|as_crispy_field }}
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close">
+                                                <input type="button" class="btn btn-primary" data-dismiss="modal" value="Add">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for client in clientsList%}
+                    <tr>
+                        <td><b> {{ client.name }} </b></td>
+                        <td> {{ client.email }} </td>
+                        <td> {{ client.phoneNumber }} </td>
+                        <td> {{ client.address }} </td>
+                        <td>
+                            <a class="btn btn-outline-info"  href="{% url 'clients:updateClient' id=client.id %}" title="" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        
+                            <!-- Button trigger modal for delete-->
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Delete Client</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this client?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <a type="button" class="btn btn-danger"  href="{% url 'clients:deleteClient' id=client.id %}">Delete</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

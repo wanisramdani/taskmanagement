@@ -1,0 +1,30 @@
+{% extends "layout/base.html" %} {% block content %}
+
+<div class="rules">
+    <h1 class="rules-info"> Priority: 1 (low), 2 (mid), 3 (high)</h1>
+</div>
+
+<div class="table-title">
+    <div class="row">
+        <div class="col-sm-8"><h2><b>PROJECTS</b></h2></div>
+        <div class="col-sm-4">
+            <a type="button" href="{% url 'clients:addProject' %}" class="btn btn-info add-new"><i class="fa fa-plus"></i>New Project</a>
+        </div>
+    </div>
+</div>
+<div class="objects">
+    {% for Project in Projects %}
+    <div class="obj">
+        <a class="obj-name"> <b> {{ Project.title }} </b> </a>
+        <p>Priority: {{ Project.priority }} </p>
+        <p>Deadline: {{ Project.deadline }} </p>
+        <p>responsible client: {{ Project.responsible_client}}</p>
+        <p>Tasks: {% for task in Project.tasks.all %}
+            <a href="{% url 'clients:taskProfile' id=task.id %}"> <b class="obj-list"> {{ task.title }}</b> </a> , {% endfor %}
+        </p>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

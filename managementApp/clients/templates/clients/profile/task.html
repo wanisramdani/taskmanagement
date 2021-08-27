@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %} {% block content %}
+<div class="task-profile">
+    <h2><= Task =></h2>
+    <div>
+        <h2>{{ task.title }}</h2>
+        <p><a href="{% url 'clients:clientProfile' id=task.responsible_client.id %}"> {{ task.responsible_client }}</a> </p>
+        <p> Subtasks:  
+            {% for subtask in task.subTasks.all %}
+            <a href="{% url 'clients:subtaskProfile' id=subtask.id %}"> {{ subtask.title }}</a> 
+            {% endfor %}
+        </p>
+
+        <p> This projects are dependant on this tasks: <br>
+            {% for project in projects %}
+            <b class="obj-name" ><a href="{% url 'clients:projectProfile' id=project.id %}"> {{ project.title }}</a> 
+            </b>
+            {% endfor %} 
+
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout/base.html" %} {% block content %}
+<div class="client-profile">
+    <h2><= Client => </2>
+    <div>
+        <h2>name: {{ client.name }}</h2>
+        <p>email: {{ client.email }}</p>
+        <p>{{ client.name }}'s projects
+            {% for project in projects%}
+            <a href="{% url 'clients:projectProfile' id=project.id %}"> <b class='obj-name'> {{ project.title }} </b> </a> 
+            {% endfor %}
+        </p> 
+    </div>
+</div>
+{% endblock %}

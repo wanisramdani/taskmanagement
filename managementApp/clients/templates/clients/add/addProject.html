@@ -1,0 +1,16 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy addProjectForm form.helper %}
+
+{% block content %}
+
+
+<h2><b>Add Project</b></h2>
+<form class="site-form" actions="{% url 'clients:addProject' %}" method="POST">
+    {% csrf_token %%}
+    {% crispy addProjectForm %}
+
+      
+</form>
+
+{% endblock %}
