@@ -1,6 +1,6 @@
 {% extends "layout/base.html" %} {% block content %}
 <div class="task-profile">
-    <h2><= Task =></h2>
+    <h2>== Task ==</h2>
     <div>
         <h2>{{ task.title }}</h2>
         <p><a href="{% url 'clients:clientProfile' id=task.responsible_client.id %}"> {{ task.responsible_client }}</a> </p>
