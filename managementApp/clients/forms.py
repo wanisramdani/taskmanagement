@@ -8,6 +8,11 @@ from crispy_forms.helper import FormHelper
 
 from . import models
 
+STATUS = {
+    ('Delayed', 'Delayed'),
+    ('Completed', 'Completed'),
+    ('Work in progress', 'Work in progress'), 
+}
 
 class addClient(forms.ModelForm):
     helper = FormHelper()
@@ -49,13 +54,15 @@ class addClient(forms.ModelForm):
             })
 
         }
+        
 
 class addSubTask(forms.ModelForm):
+    status = forms.ChoiceField(choices=STATUS)
     helper = FormHelper()
     helper.form_show_labels = False
     class Meta:
         model = models.SubTask
-        fields = ['title', 'priority', 'deadline', 'responsible_client']
+        fields = ['title', 'priority', 'deadline', 'responsible_client', 'status']
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -72,40 +79,41 @@ class addSubTask(forms.ModelForm):
                 'placeholer': 'Deadline',
                 'type':'date',
             }),
+            
 
         }
+
         
 class addTask(forms.ModelForm):
+    status = forms.ChoiceField(choices=STATUS)
     helper = FormHelper()
     helper.form_show_labels = False;
     helper.layout = Layout(
         Field('title', css_class="form-control", PlaceHolder="Title"),
         Field('responsible_client', PlaceHolder="Responsible Client"),
         Field('subTasks',css_class="custom-select", PlaceHolder="SubTasks"),
+        Field('status', PlaceHolder="Status" ),
         Submit('Submit', 'Submit')
     )
     class Meta:
         model = models.Task
         fields = ['title', 'responsible_client', 'subTasks']
         
-
-
-
+ 
 class addProject(forms.ModelForm):
+    status = forms.ChoiceField(choices=STATUS)
     helper = FormHelper()
     helper.form_show_labels = False;
     helper.layout = Layout(
         Field('title', css_class="form-control", PlaceHolder="Title"),
         Field('responsible_client', placeHolder="Responsible Client"),
         Field('tasks',css_class="custom-select", PlaceHolder="Tasks"),
+        Field('status', PlaceHolder="Status" ),
         Submit('Submit', 'Submit')
     )
+
     class Meta:
         model = models.Project
-        fields = ['title', 'responsible_client', 'tasks']
+        fields = ['title', 'responsible_client', 'tasks', 'status']
        
         
-
-        
-        
-    
