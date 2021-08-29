@@ -18,10 +18,13 @@
         <a class="obj-name"> <b> {{ Project.title }} </b> </a>
         <p>Priority: {{ Project.priority }} </p>
         <p>Deadline: {{ Project.deadline }} </p>
-        <p>responsible client: {{ Project.responsible_client}}</p>
+        <p>Days left: {{ Project.daysLeft }} days</p>
+        <p>responsible client: <a href="{% url 'clients:clientProfile' id=Project.responsible_client.id %}"> {{ Project.responsible_client}} </a> </p>
         <p>Tasks: {% for task in Project.tasks.all %}
             <a href="{% url 'clients:taskProfile' id=task.id %}"> <b class="obj-list"> {{ task.title }}</b> </a> , {% endfor %}
         </p>
+        
+        <p>project status: <b>{{ Project.status }}</b></p>
 
     </div>
     {% endfor %}
