@@ -4,11 +4,49 @@
     <div>
         <h2>name: {{ client.name }}</h2>
         <p>email: {{ client.email }}</p>
-        <p>{{ client.name }}'s projects: 
+        <p><i>** {{ client.name }}'s projects **</i>: <br> <br>
             {% for project in projects%}
-            <a href="{% url 'clients:projectProfile' id=project.id %}"> <b class='obj-name'> {{ project.title }} </b> </a> 
+                <!-- Completed -->
+                {% if project.status == 'Completed' %}
+                    Projects that are COMPLETED:<br>
+                <a href="{% url 'clients:projectProfile' id=project.id %}"> 
+                    <b class='obj-name'> {{ project.title }}: </b> 
+                </a>
+                    <p class="completed">{{ project.status }} </p> 
+                <br>
+                
+                <!-- Work in progress -->
+                {% elif project.status == 'Work in progress' %}
+                    Projects that are WIP:<br>
+                <a href="{% url 'clients:projectProfile' id=project.id %}"> 
+                    <b class='obj-name'> {{ project.title }}: </b> 
+                </a>
+                    <p class="wip">{{ project.status }} </p> 
+                <br>
+                
+                <!-- Delayed-->
+                {% elif project.status == 'Delayed' %}
+                    Projects that are Delayed:<br>
+                <a href="{% url 'clients:projectProfile' id=project.id %}"> 
+                    <b class='obj-name'> {{ project.title }}: </b> 
+                </a>
+                <p class="delayed">{{ project.status }} </p> 
+                <br>
+                
+                <!-- Unset (shouldnt happen)-->
+                {% elif project.status %}
+                    Projects that are Unset:<br>
+                <a href="{% url 'clients:projectProfile' id=project.id %}"> 
+                    <b class='obj-name'> {{ project.title }}: </b> 
+                </a>
+                <br>
+                    <p class="unset">{{ project.status }} </p> 
+                <br>
+                {% endif %}
+            <br>
             {% endfor %}
         </p> 
+
     </div>
 </div>
 {% endblock %}
