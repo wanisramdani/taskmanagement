@@ -52,7 +52,7 @@ ul li ul li {
 .objects {
     padding: 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 20px;
 }
 
@@ -64,7 +64,7 @@ ul li ul li {
 }
 
 .obj .obj-name {
-    position: absolute;
+    /* position: absolute; */
     background: #00ffe5;
     right: 0%;
     top: 0;
@@ -197,4 +197,20 @@ th {
 .modal-title,
 .modal-body {
     color: black !important;
+}
+
+p.completed, i.low {
+    color: #13ec13;
+}
+
+p.wip, i.mid{
+    color: #dede33;
+}
+
+p.delayed, i.high{
+    color: #de4f4f;
+}
+
+p.unset{
+    color: #6f6565;
 }
