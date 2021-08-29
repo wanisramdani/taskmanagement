@@ -1,14 +1,22 @@
-- [ ] add project status (add it to subtask/task) (done, days left before deadline).
-- [ ] clients project history (projects that are done&those that are still in productions).
-- [ ] filters tasks&subtasks according to their important.
+# Requested: 
+- [X] add project status&days left before deadline.
+- [X] add subtask status&days left before deadline
+- [X] add status&days left before deadline
 
-- [ ] add projects column to clients list.
+- [X] clients project history (projects that are done&those that are still in productions).
+- [X] maybe filter too (?)
+
+- [X] filters tasks&subtasks according to their importance.
+
+## Me:
 - [ ] redesign the whole thing.
+- [ ] redo filter logic 
+- [ ] Refactor file struture
+- [ ] Refactor utils.py
+- [ ] make sure CRUD works with API
+- [ ] add projects column to clients list.
 - [ ] fix the bug with clients table.
-- [ ] refactore utils.py
-- [ ] refactore file struture
-- [ ] rename app
-project:
-add status field to project.
-compare dates to day => return another value from compareDates function
-
+- [ ] split forms.py
+- [ ] rename app (https://stackoverflow.com/questions/8408046/how-to-change-the-name-of-a-django-app)
+- [ ] rename project
+ 
