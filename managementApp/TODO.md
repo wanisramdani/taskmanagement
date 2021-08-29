@@ -1,13 +1,16 @@
-# Requested: 
-- [X] add project status&days left before deadline.
-- [X] add subtask status&days left before deadline
-- [X] add status&days left before deadline
+# Requested:
 
-- [X] clients project history (projects that are done&those that are still in productions).
-- [X] maybe filter too (?)
+## Today
 
-- [X] filters tasks&subtasks according to their importance.
+##  Dashboard.
+- [ ] read abt dashboard and best practices
+- [ ] create new app for dashboard.
+- [ ] dashboard must show in a graphic interface:
+    * How many projects&tasks&subtask are done
+    * The avg of how long project&task took to finish
+    * 
 
+---
 ## Me:
 - [ ] redesign the whole thing.
 - [ ] redo filter logic 
@@ -19,4 +22,5 @@
 - [ ] split forms.py
 - [ ] rename app (https://stackoverflow.com/questions/8408046/how-to-change-the-name-of-a-django-app)
 - [ ] rename project
+
  
