@@ -14,16 +14,54 @@
 </div>
 
 <div class="objects">
+    <h2>LOW</h2>
     {% for subTask in subTasks %}
-    <div class="obj">
-        <a class="obj-name"><b> {{ subTask.title }} </b></a>
-        <p>Priority: {{ subTask.priority }} </p>
-        <p>Deadline: {{ subTask.deadline }} </p>
-        <p>Responsible Client: <a href="{% url 'clients:clientProfile' id=subTask.responsible_client.id %}"> {{ subTask.responsible_client}} <a/> </p>
-        <a class="obj-update" href="{% url 'clients:updateSubtask' id=subTask.id %}">EDIT</a>
-        <a class="obj-delete" href="{% url 'clients:deleteSubTask' id=subTask.id %}">DELETE</a>
-
-    </div>
+        {% if subTask.priority == 1 %}
+        <div class="obj">
+            <a class="obj-name"><b> {{ subTask.title }} </b></a>
+            <p>Priority: <i class="low"> LOW </i> </p>
+            <p>Deadline: {{ subTask.deadline }} </p>
+            <p>Days left: {{ subTask.daysLeft }} days</p>
+            <p>Responsible Client: <a href="{% url 'clients:clientProfile' id=subTask.responsible_client.id %}"> {{ subTask.responsible_client}} <a/> </p>
+            <p>Task status: <b>{{ subTask.status }}</b></p>
+            <a class="obj-update" href="{% url 'clients:updateSubtask' id=subTask.id %}">EDIT</a>
+            <a class="obj-delete" href="{% url 'clients:deleteSubTask' id=subTask.id %}">DELETE</a>
+        </div>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <h2>MID</h2>
+    {% for subTask in subTasks %}
+        {% if subTask.priority == 2 %}
+        <div class="obj">
+            <a class="obj-name"><b> {{ subTask.title }} </b></a>
+            <p>Priority: <i class="mid"> MID </i> </p>
+            <p>Deadline: {{ subTask.deadline }} </p>
+            <p>Days left: {{ subTask.daysLeft }} days</p>
+            <p>Responsible Client: <a href="{% url 'clients:clientProfile' id=subTask.responsible_client.id %}"> {{ subTask.responsible_client}} <a/> </p>
+            <p>Task status: <b>{{ subTask.status }}</b></p>
+            <a class="obj-update" href="{% url 'clients:updateSubtask' id=subTask.id %}">EDIT</a>
+            <a class="obj-delete" href="{% url 'clients:deleteSubTask' id=subTask.id %}">DELETE</a>
+        </div>
+        {% endif %}
+    {% endfor %}
+    <br>
+    
+    <h2>HIGH</h2>
+    {% for subTask in subTasks %}
+        {% if subTask.priority == 3 %}
+        <div class="obj">
+            <a class="obj-name"><b> {{ subTask.title }} </b></a>
+            <p>Priority: <i class="high"> HIGH </i> </p>
+            <p>Deadline: {{ subTask.deadline }} </p>
+            <p>Days left: {{ subTask.daysLeft }} days</p>
+            <p>Responsible Client: <a href="{% url 'clients:clientProfile' id=subTask.responsible_client.id %}"> {{ subTask.responsible_client}} <a/> </p>
+            <p>Task status: <b>{{ subTask.status }}</b></p>
+            <a class="obj-update" href="{% url 'clients:updateSubtask' id=subTask.id %}">EDIT</a>
+            <a class="obj-delete" href="{% url 'clients:deleteSubTask' id=subTask.id %}">DELETE</a>
+        </div>
+        {% endif %}
+        
     {% endfor %}
 </div>
 

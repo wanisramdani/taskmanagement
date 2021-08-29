@@ -13,16 +13,55 @@
     </div>
 </div>
 <div class="objects">
-    {% for Task in Tasks %}
+    <h2>LOW</h2>
+    {% for task in Tasks %}
+    {% if task.priority == 1 %}
     <div class="obj">
-        <a class="obj-name"><b> {{ Task.title }} </b> </a>
-        <p>Priority: {{ Task.priority }} </p>
-        <p>Deadline: {{ Task.deadline }} </p>
-        <p>Responsible client: {{ Task.responsible_client}} </p>
-        <p>SubTasks: {% for subtask in Task.subTasks.all %}
+        <a class="obj-name"><b> {{ task.title }} </b> </a>
+        <p>Priority: <i class="low"> LOW </i> </p>
+        <p>Deadline: {{ task.deadline }} </p>
+        <p>Days left: {{ task.daysLeft }} days</p>
+        <p>Responsible client: {{ task.responsible_client}} </p>
+        <p>SubTasks: {% for subtask in task.subTasks.all %}
             <a href="{% url 'clients:subtaskProfile' id=subtask.id %}"> <b class="obj-list"> {{ subtask.title }}</b> </a>, {% endfor %}
         </p>
+        <p>Task status: <b>{{ task.status }}</b></p>
     </div>
+    {% endif %}
+    {% endfor %}
+
+    <h2>MID</h2>
+    {% for task in Tasks %}
+    {% if task.priority == 2 %}
+    <div class="obj">
+        <a class="obj-name"><b> {{ task.title }} </b> </a>
+        <p>Priority: <i class="mid"> MID </i> </p>
+        <p>Deadline: {{ task.deadline }} </p>
+        <p>Days left: {{ task.daysLeft }} days</p>
+        <p>Responsible client: {{ task.responsible_client}} </p>
+        <p>SubTasks: {% for subtask in task.subTasks.all %}
+            <a href="{% url 'clients:subtaskProfile' id=subtask.id %}"> <b class="obj-list"> {{ subtask.title }}</b> </a>, {% endfor %}
+        </p>
+        <p>Task status: <b>{{ task.status }}</b></p>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <h2>HIGH</h2>
+    {% for task in Tasks %}
+    {% if task.priority == 3 %}
+    <div class="obj">
+        <a class="obj-name"><b> {{ task.title }} </b> </a>
+        <p>Priority: <i class="high"> HIGH </i> </p>
+        <p>Deadline: {{ task.deadline }} </p>
+        <p>Days left: {{ task.daysLeft }} days </p>
+        <p>Responsible client: {{ task.responsible_client}} </p>
+        <p>SubTasks: {% for subtask in task.subTasks.all %}
+            <a href="{% url 'clients:subtaskProfile' id=subtask.id %}"> <b class="obj-list"> {{ subtask.title }}</b> </a>, {% endfor %}
+        </p>
+        <p>Task status: <b>{{ task.status }}</b></p>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 
