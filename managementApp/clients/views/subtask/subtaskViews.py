@@ -2,9 +2,11 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from clients import forms
 from clients.models import Client, Project, SubTask, Task
+from clients.utils import saveDaysLeft
 
 
 def subTaskList(request):
+    saveDaysLeft(SubTask)
     return render(request, 'clients/list/subTaskList.html', {
         'subTasks': SubTask.objects.all()
         } )

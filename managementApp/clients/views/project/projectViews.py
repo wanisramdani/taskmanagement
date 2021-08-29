@@ -1,20 +1,24 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
 from clients import forms
-from clients.models import Client, Project, SubTask, Task
+from clients.models import Project
 
-from clients.utils import limitPriority, setProjectPriority, setProjectDeadline
+from clients.utils import setProjectPriority, setProjectDeadline
 
 
 def projectList(request):
     setProjectPriority()
     setProjectDeadline()
-    return render(request, 'clients/list/projectList.html', {'Projects': Project.objects.all()})
+    return render(request, 'clients/list/projectList.html', {
+        'Projects': Project.objects.all(), 
+        })
 
 
 def projectProfile(request, id):
     project = get_object_or_404(Project, id=id)
-    return render(request, 'clients/profile/project.html', {'project': project})
+    return render(request, 'clients/profile/project.html', {
+        'project': project
+        })
 
 
 # CRUD
@@ -27,5 +31,7 @@ def addProject(request):
     else:
         addProjectForm = forms.addProject()
 
-    return render(request, 'clients/add/addProject.html', {'addProjectForm': addProjectForm})
+    return render(request, 'clients/add/addProject.html', {
+        'addProjectForm': addProjectForm
+        })
 
