@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from clients import forms
-from clients.models import Project
+from managementapp import forms
+from managementapp.models import Project
 
-from clients.utils import setProjectPriority, setProjectDeadline
+from managementapp.utils import setProjectPriority, setProjectDeadline
 
 
 def projectList(request):

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from clients.models import Client, SubTask, Task, Project
+from managementapp.models import Client, SubTask, Task, Project
 
 #REDO
 

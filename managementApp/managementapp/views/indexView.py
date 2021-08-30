@@ -1,8 +1,8 @@
 
 from django.shortcuts import render
 
-from clients.models import Client, SubTask, Task, Project
-from clients.utils import setTaskPriority, setTaskDeadline, setProjectPriority, setProjectDeadline
+from managementapp.models import Client, SubTask, Task, Project
+from managementapp.utils import setTaskPriority, setTaskDeadline, setProjectPriority, setProjectDeadline
 
 
 def list(request):

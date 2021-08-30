@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 
-from clients import serializers
-from clients.models import Client, SubTask, Task, Project
+from managementapp import serializers
+from managementapp.models import Client, SubTask, Task, Project
 
 
 ### API endpoint

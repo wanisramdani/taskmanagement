@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from clients import forms
-from clients.models import Client, Project, SubTask, Task
+from managementapp import forms
+from managementapp.models import Client, Project, SubTask, Task
 
-from clients.utils import limitPriority
+from managementapp.utils import limitPriority
 
 
 def clientList(request):
