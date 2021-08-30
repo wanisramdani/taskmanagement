@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav } from 'react-bootstrap'
+import { Nav, NavDropdown } from 'react-bootstrap'
 
 const Navbar = () => {
     return (
@@ -9,10 +9,20 @@ const Navbar = () => {
                 <Nav.Link href="/">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="">List</Nav.Link>
+                <NavDropdown title="List" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Clients</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Subtasks</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Tasks</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.4">Projects</NavDropdown.Item>
+
+                </NavDropdown>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="">Documentation</Nav.Link>
+                <NavDropdown title="Documentation" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Swagger</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Redoc</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">API</NavDropdown.Item>
+                </NavDropdown>
             </Nav.Item>
         </Nav> 
         </>
