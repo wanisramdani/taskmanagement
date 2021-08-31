@@ -1,0 +1,37 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block content %} 
+
+    <!-- <div>  <button id="download-csv">Download CSV</button>  </div> -->
+
+    <h3> Low projects for each client</h3>
+    <div id="clientLowData"></div>
+    <br><br>
+
+    <h3> Mid projects for each client</h3>
+    <div id="clientMidData"></div>
+    <br><br>
+
+    <h3> High projects for each client</h3>
+    <div id="clientHighData"></div>
+    <br><br>
+
+    <h3>Clients</h3>
+    <div id="client-data-tables"></div> <br><br>
+  
+    <h3>Subtasks</h3>
+    <div id="subtask-data-tables"></div><br><br>
+    
+    <h3>Tasks</h3>
+    <div id="task-data-tables"></div><br><br>
+  
+    <h3>Projects</h3>
+    <div id="project-data-tables"></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+
+{% endblock %}
