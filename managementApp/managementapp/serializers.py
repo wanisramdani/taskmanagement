@@ -11,17 +11,18 @@ class ClientSerializer(serializers.HyperlinkedModelSerializer):
 class SubTaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SubTask
-        fields = ['title', 'priority', 'deadline', 'responsible_client']
+        fields = ['title', 'priority', 'deadline', 'daysLeft', 'status', 'responsible_client']
+
 
 
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
-        fields = ['title', 'priority', 'deadline', 'responsible_client', 'subTasks']
+        fields = ['title', 'priority', 'deadline', 'daysLeft', 'status', 'responsible_client', 'subTasks']
         
 
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields = ['title', 'priority', 'deadline', 'responsible_client', 'tasks']
+        fields = ['title', 'priority', 'deadline', 'daysLeft', 'status', 'responsible_client', 'tasks']

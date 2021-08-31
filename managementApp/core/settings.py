@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Project apps
     'managementapp.apps.ClientsConfig',
+    'dashboard.apps.DashboardConfig',
+    
     'rest_framework',
     'crispy_forms',
     'coreapi', # for redoc
@@ -65,6 +68,7 @@ TEMPLATES = [
         'DIRS': [
             'templates',
             'managementapp/templates',
+            'dashboard/templates',
 
         ],
         'APP_DIRS': True,
