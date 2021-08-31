@@ -45,10 +45,43 @@ def clientsLowProjectData(request):
 
 def clientsMidProjectData(request):
     dataset = clientsObjectsData(Project, 2)
-    print(dataset)
     return JsonResponse(dataset, safe=False)
 
 
 def clientsHighProjectData(request):
     dataset = clientsObjectsData(Project ,3)
+    return JsonResponse(dataset, safe=False)
+
+
+## Client total tasks filtered by status and Priority
+# low&mid&high  tasks
+def clientsLowTaskData(request):
+    dataset = clientsObjectsData(Task ,1)
+    return JsonResponse(dataset, safe=False)
+
+
+def clientsMidTaskData(request):
+    dataset = clientsObjectsData(Task, 2)
+    return JsonResponse(dataset, safe=False)
+
+
+def clientsHighTaskData(request):
+    dataset = clientsObjectsData(Task ,3)
+    return JsonResponse(dataset, safe=False)
+
+
+## Client total subtasks filtered by status and Priority
+# low&mid&high  subtasks
+def clientsLowSubtaskData(request):
+    dataset = clientsObjectsData(SubTask ,1)
+    return JsonResponse(dataset, safe=False)
+
+
+def clientsMidSubtaskData(request):
+    dataset = clientsObjectsData(SubTask, 2)
+    return JsonResponse(dataset, safe=False)
+
+
+def clientsHighSubtaskData(request):
+    dataset = clientsObjectsData(SubTask ,3)
     return JsonResponse(dataset, safe=False)

@@ -1,57 +1,8 @@
-/* 
-function processData(dataset) {
-    var result = []
-    dataset = JSON.parse(dataset);
-    dataset.forEach(item => result.push(item.fields));
-    return result;
-}
-
-$.ajax({
-    url: $("#client-data-tables").attr("data-url"),
-    dataType: 'json',
-    success: function(data) {
-        new Flexmonster({
-            container: "#client-data-tables",
-            componentFolder: "https://cdn.flexmonster.com/",
-            width: "100%",
-            height: 430,
-            toolbar: true,
-            report: {
-                dataSource: {
-                    type: "json",
-                    data: processData(data)
-                },
-                slice: {}
-            }
-        });
-        new Flexmonster({
-            container: "#client-data-tables",
-            componentFolder: "https://cdn.flexmonster.com/",
-            width: "100%",
-            height: 430,
-            //toolbar: true,
-            report: {
-                dataSource: {
-                    type: "json",
-                    data: processData(data)
-                },
-                slice: {},
-                "options": {
-                    "viewType": "charts",
-                    "chart": {
-                        "type": "pie"
-                    }
-                }
-            }
-        });
-    }
-});
-*/
-
 const dataset = [];
 const data = fetch('http://127.0.0.1:8080/api/clients/?format=json')
     .then(response => response.json())
     .then(data =>  Object.entries(data).map(obj  => dataset.push(obj[1]) ));
+
 
 
 var clientTable = new Tabulator("#client-data-tables", {
@@ -110,9 +61,11 @@ var projectTable = new Tabulator("#project-data-tables", {
     ],
 })
 
-var clientLowDataTable = new Tabulator("#clientLowData",{
+/* */
+
+var clientProjectLowDataTable = new Tabulator("#clientLowData",{
     height: 150,
-    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsLowData/",
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsProjectLowData/",
     layout: 'fitColumns',
     columns: [
         {title: "name", field:"name"},
@@ -122,9 +75,13 @@ var clientLowDataTable = new Tabulator("#clientLowData",{
     ],
 })
 
-var clientMidDataTable = new Tabulator("#clientMidData",{
+document.getElementById("download-project-low-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "low-project.csv");
+});
+
+var clientProjectMidDataTable = new Tabulator("#clientMidData",{
     height: 150,
-    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsMidData/",
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsProjectMidData/",
     layout: 'fitColumns',
     columns: [
         {title: "name", field:"name"},
@@ -134,9 +91,14 @@ var clientMidDataTable = new Tabulator("#clientMidData",{
     ],
 })
 
-var clientHighDataTable = new Tabulator("#clientHighData",{
+document.getElementById("download-project-mid-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "mid-project.csv");
+});
+
+
+var clientProjectHighDataTable = new Tabulator("#clientHighData",{
     height: 150,
-    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsHighData/",
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsProjectHighData/",
     layout: 'fitColumns',
     columns: [
         {title: "name", field:"name"},
@@ -146,7 +108,107 @@ var clientHighDataTable = new Tabulator("#clientHighData",{
     ],
 })
 
-//trigger download of data.csv file
-document.getElementById("download-csv").addEventListener("click", function(){
-    table.download("csv", "data.csv");
+document.getElementById("download-project-high-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "high-project.csv");
+});
+
+
+/* TASK */
+
+var clientProjectHighDataTable = new Tabulator("#clientsTaskLowData",{
+    height: 150,
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsTaskLowData/",
+    layout: 'fitColumns',
+    columns: [
+        {title: "name", field:"name"},
+        {title: "total_delayed", field:"total_delayed"},
+        {title: "total_wip", field:"total_wip"},
+        {title: "total_completed", field:"total_completed"},
+    ],
+})
+
+document.getElementById("download-task-low-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "low-task.csv");
+});
+
+
+var clientProjectHighDataTable = new Tabulator("#clientsTaskMidData",{
+    height: 150,
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsTaskMidData/",
+    layout: 'fitColumns',
+    columns: [
+        {title: "name", field:"name"},
+        {title: "total_delayed", field:"total_delayed"},
+        {title: "total_wip", field:"total_wip"},
+        {title: "total_completed", field:"total_completed"},
+    ],
+})
+
+document.getElementById("download-task-mid-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "mid-task.csv");
+});
+
+var clientProjectHighDataTable = new Tabulator("#clientsTaskHighData",{
+    height: 150,
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsTaskHighData/",
+    layout: 'fitColumns',
+    columns: [
+        {title: "name", field:"name"},
+        {title: "total_delayed", field:"total_delayed"},
+        {title: "total_wip", field:"total_wip"},
+        {title: "total_completed", field:"total_completed"},
+    ],
+})
+
+document.getElementById("download-task-high-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "high-task.csv");
+});
+
+/* */
+
+var clientProjectHighDataTable = new Tabulator("#clientsSubtaskLowData",{
+    height: 150,
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsSubtaskLowData/",
+    layout: 'fitColumns',
+    columns: [
+        {title: "name", field:"name"},
+        {title: "total_delayed", field:"total_delayed"},
+        {title: "total_wip", field:"total_wip"},
+        {title: "total_completed", field:"total_completed"},
+    ],
+})
+document.getElementById("download-subtask-low-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "low-subtask.csv");
+});
+
+var clientProjectHighDataTable = new Tabulator("#clientsSubtaskMidData",{
+    height: 150,
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsSubtaskMidData/",
+    layout: 'fitColumns',
+    columns: [
+        {title: "name", field:"name"},
+        {title: "total_delayed", field:"total_delayed"},
+        {title: "total_wip", field:"total_wip"},
+        {title: "total_completed", field:"total_completed"},
+    ],
+})
+
+document.getElementById("download-subtask-mid-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "mid-subtask.csv");
+});
+
+var clientProjectHighDataTable = new Tabulator("#clientsSubtaskHighData",{
+    height: 150,
+    ajaxURL: "http://127.0.0.1:8080/dashboard/clientsSubtaskHighData/",
+    layout: 'fitColumns',
+    columns: [
+        {title: "name", field:"name"},
+        {title: "total_delayed", field:"total_delayed"},
+        {title: "total_wip", field:"total_wip"},
+        {title: "total_completed", field:"total_completed"},
+    ],
+})
+
+document.getElementById("download-subtask-high-csv").addEventListener("click", function(){
+    clientProjectLowDataTable.download("csv", "high-subtask.csv");
 });
