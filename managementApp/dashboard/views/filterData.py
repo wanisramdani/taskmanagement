@@ -12,6 +12,7 @@ def clientsObjectsData(object, priority):
         client_objects = object.objects.filter(responsible_client=client)
         data = {
             'name': client.name, 
+            'priority': getPriority(client_objects),
             'total_delayed': countTotalProjects(client, client_objects, priority, "Delayed"),
             'total_wip': countTotalProjects(client, client_objects, priority, "Work in progress"),
             'total_completed': countTotalProjects(client, client_objects, priority, "Completed"),
@@ -24,8 +25,12 @@ def clientsObjectsData(object, priority):
 def countTotalProjects(client, objects, priority, status):
     total = 0
     for obj in objects:
-        if obj.priority == priority:
+        if obj.priority != None:
             if obj.status == status and obj.responsible_client == client:
                 total += 1
 
     return total
+
+def getPriority(objects):
+    for obj in objects:
+        return obj.priority

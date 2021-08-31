@@ -42,7 +42,7 @@ urlpatterns = [
     
     # API
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls), name="api"),
     # API DOCS
     path('docs/', include_docs_urls(title='docs'), name='docs'),
     url(r'^swagger(.P<format>\.json|.yaml)$', schema_view.without_ui(cache_timeout=0), name="schema-json"),
