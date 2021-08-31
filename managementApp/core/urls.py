@@ -12,7 +12,7 @@ from drf_yasg import openapi
 from . import views
 from managementapp import views as vs
 
-app_name = "core"
+app_name = "c"
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -36,10 +36,14 @@ router.register('project', vs.ProjectViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('clients/', include('managementapp.urls')),
-    path('api-auth/', include('rest_framework.urls')),
+    path('list', include('managementapp.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('', views.index),
+    
+    # API
+    path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    # API DOCS
     path('docs/', include_docs_urls(title='docs'), name='docs'),
     url(r'^swagger(.P<format>\.json|.yaml)$', schema_view.without_ui(cache_timeout=0), name="schema-json"),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name="swagger-swagger-ui"),

@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+# TODO: change me to managementapp
 app_name= 'clients'
 
 urlpatterns = [
