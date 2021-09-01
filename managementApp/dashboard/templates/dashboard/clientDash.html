@@ -14,39 +14,13 @@
         <input id="filter-value" type="text" placeholder="value to filter">
         <button id="filter-clear">Clear Filter</button>
     </div>
-    <h3> Projects for each client</h3>
-    <div id="clientLowData"></div>
-    <div>  <button id="download-clientLowData">Download CSV</button>  </div> 
-    <br><br>
-
-
-    <h3> Tasks for each client</h3>
-    <div id="clientsTaskLowData"></div>
-    <div>  <button id="download-clientsTaskLowData">Download CSV</button>  </div> 
-    <br><br>
-
-
-    <h3> Subtask for each client</h3>
-    <div id="clientsSubtaskLowData"></div>
-    <div>  <button id="download-clientsSubtaskLowData">Download CSV</button>  </div> 
-    <br><br>
-
+    
     <h3>Clients</h3>
     <div id="client-data-tables"></div> <br><br>
-  
-    <h3>Subtasks</h3>
-    <div id="subtask-data-tables"></div><br><br>
-    
-    <h3>Tasks</h3>
-    <div id="task-data-tables"></div><br><br>
-  
-    <h3>Projects</h3>
-    <div id="project-data-tables"></div>
-
-
+ 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/clientDashboard.js' %}"></script>
 
 {% endblock %}

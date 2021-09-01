@@ -5,6 +5,8 @@ app_name= 'dashboard'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('clientDash/', views.clientDash, name='clientDash'),
+
     path('clientsData/', views.ClientData, name='data'),
     path('subtaskData/', views.subtaskData, name='data'),
     path('tasksData/', views.taskData, name='data'),
