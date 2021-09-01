@@ -1,59 +1,90 @@
-const dataset = [];
-const data = fetch('http://127.0.0.1:8080/api/clients/?format=json')
-    .then(response => response.json())
-    .then(data =>  Object.entries(data).map(obj  => dataset.push(obj[1]) ));
-
-
+/* TODO: rename ids */
 var dict = {
-    "#clientLowData": "http://127.0.0.1:8080/dashboard/clientsProjectLowData/",
-    "#clientMidData": "http://127.0.0.1:8080/dashboard/clientsProjectMidData/",
-    "#clientHighData": "http://127.0.0.1:8080/dashboard/clientsProjectHighData/",
-   
-    "#clientsTaskLowData": "http://127.0.0.1:8080/dashboard/clientsProjectLowData/",
-    "#clientsTaskMidData": "http://127.0.0.1:8080/dashboard/clientsTaskMidData/",
-    "#clientsTaskHighData": "http://127.0.0.1:8080/dashboard/clientsTaskHighData/",
-
-    "#clientsSubtaskLowData": "http://127.0.0.1:8080/dashboard/clientsSubtaskLowData/",
-    "#clientsSubtaskMidData": "http://127.0.0.1:8080/dashboard/clientsSubtaskMidData/",
-    "#clientsSubtaskHighData": "http://127.0.0.1:8080/dashboard/clientsSubtaskHighData/",
+    /* id: url */
+    "clientLowData": "http://127.0.0.1:8080/dashboard/clientsProjectLowData/",
+    "clientsTaskLowData": "http://127.0.0.1:8080/dashboard/clientsProjectLowData/",
+    "clientsSubtaskLowData": "http://127.0.0.1:8080/dashboard/clientsSubtaskLowData/",
 }
 
-for (var key in dict) {
-    console.log("for loop")
-    var value = dict[key]
-    var table = new Tabulator(key,{
+var fieldEl = document.getElementById("filter-field");
+var typeEl = document.getElementById("filter-type");
+var valueEl = document.getElementById("filter-value");
+
+//Custom filter example
+function customFilter(data){
+    return data.car && data.rating < 3;
+}
+
+//Trigger setFilter function with correct parameters
+function updateFilter(){
+    var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+    var typeVal = typeEl.options[typeEl.selectedIndex].value;
+
+    if(filterVal){
+        table.setFilter(filterVal, typeVal, valueEl.value);
+        clientProjectsTable.setFilter(filterVal, typeVal, valueEl.value);
+        clientTasksTable.setFilter(filterVal, typeVal, valueEl.value);
+        clientSubtaskTable.setFilter(filterVal, typeVal, valueEl.value);
+    }
+}
+
+//Update filters on value change
+fieldEl.addEventListener("change", updateFilter);
+typeEl.addEventListener("change", updateFilter);
+valueEl.addEventListener("keyup", updateFilter);
+
+var filterClear = document.getElementById("filter-clear");
+//Clear filters on "Clear Filters" button click
+
+filterClear.addEventListener("click", function(){
+    valueEl.value = "";
+
+    clientProjectsTable.clearFilter();
+    clientTasksTable.clearFilter();
+    clientSubtaskTable.clearFilter();
+});
+
+for (var id in dict) {
+    var url = dict[id]
+    var table = new Tabulator("#".concat(id), {
         height: 150,
-        ajaxURL: dict[key],
+        autoColumns: true,
+        ajaxURL: url,
         layout: 'fitColumns',
         groupBy: 'priority',
         columns: [
-            {title: "priority", field: "priority"},
             {title: "name", field:"name"},
+            {title: "priority", field: "priority", formatter:"color", width:50},
             {title: "total_delayed", field:"total_delayed"},
             {title: "total_wip", field:"total_wip"},
             {title: "total_completed", field:"total_completed"},
         ],
     })
-    /*document.getElementById("download-subtask-high-csv").addEventListener("click", function(){
-        clientProjectLowDataTable.download("csv", "high-subtask.csv");
-    }); */
+    document.getElementById("download-".concat(id)).addEventListener("click", function(){
+        table.download("csv", id.concat(".csv"));
+    }); 
+    if (id == "clientLowData") {
+        var clientProjectsTable = table
+    } else if (id == "clientsTaskLowData") {
+        var clientTasksTable = table
+    } else if (id == "clientsSubtaskLowData") {
+        var clientSubtaskTable = table
+    }
     
 }
 
-
-/*
-
+/* Models tables */
 var dictModel = {
-    "#subtask-data-tables": "http://127.0.0.1:8080/api/subTasks/?format=json",
-    "#task-data-tables": "http://127.0.0.1:8080/api/tasks/?format=json",
-    "#project-data-tables": "http://127.0.0.1:8080/api/project/?format=json",
+    "subtask-data-tables": "http://127.0.0.1:8080/api/subTasks/?format=json",
+    "task-data-tables": "http://127.0.0.1:8080/api/tasks/?format=json",
+    "project-data-tables": "http://127.0.0.1:8080/api/project/?format=json",
 }
 
-for (var key in dictModel) {
-    var value = dictModel[key]
-    var table = new Tabulator(key, {
+for (var id in dictModel) {
+    var url = dictModel[id]
+    var tableModel = new Tabulator("#".concat(id), {
         height: 150,
-        ajaxURL: value,
+        ajaxURL: url,
         layout: 'fitColumns',
         columns: [
             {title:"Title", field:"title", width: 150},
@@ -66,11 +97,8 @@ for (var key in dictModel) {
             alert("TODO: " + row.getData().id + " redicrect to client profile or charts");
         }
     })
-    document.getElementById("download-subtask-high-csv").addEventListener("click", function(){
-        clientProjectLowDataTable.download("csv", "high-subtask.csv");
-    }); 
-    
 }
+
 var clientTable = new Tabulator("#client-data-tables", {
     height: 150,
     ajaxURL: "http://127.0.0.1:8080/api/clients/?format=json",
@@ -85,5 +113,3 @@ var clientTable = new Tabulator("#client-data-tables", {
         alert("TODO: " + row.getData().id + " redicrect to client profile or charts");
     }
 })
-
-*/
