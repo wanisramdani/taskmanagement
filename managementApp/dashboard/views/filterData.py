@@ -10,6 +10,7 @@ def clientsObjectsData(object, priority):
     dataset = []
     for client in Client.objects.all():
         client_objects = object.objects.filter(responsible_client=client)
+        
         data = {
             'name': client.name, 
             'priority': getPriority(client_objects),
@@ -25,12 +26,19 @@ def clientsObjectsData(object, priority):
 def countTotalProjects(client, objects, priority, status):
     total = 0
     for obj in objects:
-        if obj.priority != None:
-            if obj.status == status and obj.responsible_client == client:
-                total += 1
+        if obj.status == status and obj.responsible_client == client:
+            total += 1
 
     return total
 
 def getPriority(objects):
+    if not objects:
+        return "UNSET"
+
     for obj in objects:
-        return obj.priority
+        if obj.priority == 1:
+            return "LOW"
+        elif obj.priority == 2:
+            return "MID"
+        else: 
+            return "HIGH"

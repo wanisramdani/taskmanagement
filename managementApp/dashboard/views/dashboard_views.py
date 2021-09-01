@@ -10,6 +10,8 @@ from .filterData import clientsObjectsData
 def index(request):
     return render(request, "dashboard/dashboard.html", {})
 
+def clientDash(request):
+    return render(request, "dashboard/clientDash.html", {})
 
 def ClientData(request):
     dataset = Client.objects.all()
@@ -39,7 +41,6 @@ def projectData(request):
 # low&mid&high  projects
 def clientsLowProjectData(request):
     dataset = clientsObjectsData(Project ,1)
-    print(dataset)
     return JsonResponse(dataset, safe=False)
 
 
