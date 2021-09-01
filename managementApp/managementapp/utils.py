@@ -94,4 +94,4 @@ def saveDaysLeft(instances):
 
 def countDaysLeft(deadline):
     daysLeft = ( deadline - datetime.date( datetime.now() ) ).days
-    return daysLeft if daysLeft >= 0 else 0
+    return daysLeft if daysLeft >= 0 else -1
