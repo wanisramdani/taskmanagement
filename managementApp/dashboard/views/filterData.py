@@ -3,6 +3,47 @@ from django.http.response import HttpResponse
 from managementapp.models import Client, Project, Task, SubTask
 from .dashboard_views import *
 
+def ezData(dataset):
+    for data in dataset:
+        for obj in data:
+            res ={
+                "name": data.name,
+                "email": data.email,
+                "title": obj.title,
+            }
+    print(res)
+    return res
+
+def clientsAllData():
+    dataset = []
+    for client in Client.objects.all():
+        client_project = Project.objects.filter(responsible_client=client)
+        client_task = Task.objects.filter(responsible_client=client)
+        client_subtask = SubTask.objects.filter(responsible_client=client)
+        data = {
+            "name": client.name,
+            "email": client.email,
+            "subtask": getObjectData(client_subtask),
+            "task": getObjectData(client_task),
+            "project": getObjectData(client_project),
+        }
+        dataset.append(data)
+
+    return dataset
+
+def getObjectData(objects):
+    dict = []
+    for obj in objects:
+        return {
+            "title": obj.title,
+            "priority": obj.priority,
+            "deadline": obj.deadline,
+            "daysLeft": obj.daysLeft,
+        }
+        dict.append(res)
+    
+    return dict
+
 
 # How many projects each client has, filtered by priority&status
 # Return {project_priority, client_name, project_status}

@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %} 
 
+    <h3>Clients</h3>
     <div>
         <select id="filter-field">
             <option value="name">Name</option>
@@ -14,8 +15,13 @@
         <input id="filter-value" type="text" placeholder="value to filter">
         <button id="filter-clear">Clear Filter</button>
     </div>
+    <b style="color:white">Group by:</b>
+    <button id="groupby-client">Client</button>
+    <button id="groupby-task">Task</button>
+    <button id="groupby-project">Project</button>
     
-    <h3>Clients</h3>
+    <br><br>
+
     <div id="client-data-tables"></div> <br><br>
  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

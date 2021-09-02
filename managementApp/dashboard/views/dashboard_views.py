@@ -4,7 +4,7 @@ from django.core import serializers
 from django.http import JsonResponse
 
 from managementapp.models import Client, Project, Task, SubTask
-from .filterData import clientsObjectsData
+from .filterData import clientsObjectsData, clientsAllData
 
 
 def index(request):
@@ -35,6 +35,10 @@ def projectData(request):
     dataset = Project.objects.all()
     data = serializers.serialize('json', dataset)
     return JsonResponse(data, safe=False)
+
+def allClientData(request):
+    dataset = clientsAllData()
+    return JsonResponse(dataset, safe=False)
 
 
 ## Client total projects filtered by status and Priority
