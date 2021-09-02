@@ -1,0 +1,17 @@
+{% for client in clientsList%}
+    <tr>
+        <td><a href="{% url 'clients:clientProfile' id=client.id %}"> <b> {{ client.name }} </b></a> </td>
+        <td> {{ client.email }} </td>
+        <td> {{ client.phoneNumber }} </td>
+        <td> {{ client.address }} </td>
+        <td>
+            <a class="btn btn-outline-info"  href="{% url 'clients:updateClient' id=client.id %}" title="" data-toggle="tooltip" data-original-title="Edit">
+                <i class="bi bi-pencil"></i>
+            </a>
+        </td>
+        <td>
+            <a type="button" class="btn btn-danger" href="{% url 'clients:deleteClient' id=client.id %}">Delete</a>
+        </td>
+    </tr>
+
+{% endfor %}
