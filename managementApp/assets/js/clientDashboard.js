@@ -1,16 +1,10 @@
+var tubGroupBY = [];
+
 var fieldEl = document.getElementById("filter-field");
 var typeEl = document.getElementById("filter-type");
 var valueEl = document.getElementById("filter-value");
 
-var groupbyClient = document.getElementById("groupby-client");
-var groupbyTask = document.getElementById("groupby-task");
-var groupbyProject = document.getElementById("groupby-project");
-
-
-//Custom filter example
-function customFilter(data){
-    return data.car && data.rating < 3;
-}
+var groupby = Array.from(document.getElementsByClassName("groupby"))
 
 //Trigger setFilter function with correct parameters
 function updateFilter(){
@@ -19,7 +13,6 @@ function updateFilter(){
 
     if(filterVal){
         clientTable.setFilter(filterVal, typeVal, valueEl.value);
-       
     }
 }
 
@@ -31,18 +24,25 @@ var filterClear = document.getElementById("filter-clear");
 
 filterClear.addEventListener("click", function(){
     valueEl.value = "";
-    clientTable.setGroupBy(false)
+    tubGroupBY = [];
+    clientTable.setGroupBy(false);
     clientTable.clearFilter();
 });
 
-groupbyClient.addEventListener("click", function(){
-    clientTable.setGroupBy("name")
-});
-groupbyTask.addEventListener("click", function(){
-    clientTable.setGroupBy("task.title")
-});
-groupbyProject.addEventListener("click", function(){
-    clientTable.setGroupBy("project.title")
+// Group by
+groupby.forEach(g => {
+    g.addEventListener('click', e=> {
+        if (g.id == "groupby-client" && tubGroupBY.indexOf('name') === -1) {
+            tubGroupBY.push('name')
+        };
+        if (g.id == "groupby-task" && tubGroupBY.indexOf('task.title') === -1){
+            tubGroupBY.push('task.title')
+        };
+        if (g.id == "groupby-project" && tubGroupBY.indexOf('project.title') === -1){
+            tubGroupBY.push('project.title')
+        };
+        clientTable.setGroupBy(tubGroupBY);
+    });
 });
 
 var clientTable = new Tabulator("#client-data-tables", {
