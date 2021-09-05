@@ -32,14 +32,33 @@ filterClear.addEventListener("click", function(){
 // Group by
 groupby.forEach(g => {
     g.addEventListener('click', e=> {
-        if (g.id == "groupby-client" && tubGroupBY.indexOf('name') === -1) {
-            tubGroupBY.push('name')
+        if (g.id == "groupby-client") {
+            let pos = tubGroupBY.indexOf('name')
+            if (pos !== -1) {
+                if (pos === 0) tubGroupBY.splice(pos, pos + 1)
+                else tubGroupBY.splice(pos, pos)
+            }else {
+                tubGroupBY.push('name')
+            }
         };
-        if (g.id == "groupby-task" && tubGroupBY.indexOf('task.title') === -1){
-            tubGroupBY.push('task.title')
+        if (g.id == "groupby-task"){
+            let pos = tubGroupBY.indexOf('task.title')
+            if (pos !== -1) {
+                if (pos === 0) tubGroupBY.splice(pos, pos + 1)
+                else tubGroupBY.splice(pos, pos)
+                
+            }else {
+                tubGroupBY.push('task.title')
+            }
         };
-        if (g.id == "groupby-project" && tubGroupBY.indexOf('project.title') === -1){
-            tubGroupBY.push('project.title')
+        if (g.id == "groupby-project"){
+            let pos = tubGroupBY.indexOf('project.title')
+            if (pos !== -1) {
+                if (pos === 0) tubGroupBY.splice(pos, pos + 1)
+                else tubGroupBY.splice(pos, pos)
+            }else {
+                tubGroupBY.push('project.title')
+            } 
         };
         clientTable.setGroupBy(tubGroupBY);
     });
@@ -53,12 +72,27 @@ var clientTable = new Tabulator("#client-data-tables", {
     movableRows:true,
     movableColumns:true,
     ajaxURL: "http://127.0.0.1:8080/dashboard/allClientData/",
-    layout: 'fitColumns',
     columns: [
         {title:"Name", field:"name", width: 150},
         {title:"Email", field:"email"},
-        {title:"Project", field:"project.title"},
-        {title:"Task", field:"task.title"},
+        {title:"Project", columns: [
+         {title:"Title" ,field:"project.title"}, 
+         {title:"Priority" ,field:"project.priority"},
+         {title:"Deadline" ,field:"project.deadline", sorter:"date"},
+         {title:"Days Left" ,field:"project.daysLeft"},  
+        ]},
+        {title:"Task", columns: [
+            {title:"Title" ,field:"task.title"}, 
+            {title:"Priority" ,field:"task.priority"},
+            {title:"Deadline" ,field:"task.deadline", sorter:"date"},
+            {title:"Days Left" ,field:"task.daysLeft"},  
+        ]},
+        {title:"Subtask", columns: [
+            {title:"Title" ,field:"subtask.title"}, 
+            {title:"Priority" ,field:"subtask.priority"},
+            {title:"Deadline" ,field:"subtask.deadline", sorter:"date"},
+            {title:"Days Left" ,field:"subtask.daysLeft"},  
+        ]},
     ],
     
 })

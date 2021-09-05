@@ -23,7 +23,7 @@ def clientsAllData():
         data = {
             "name": client.name,
             "email": client.email,
-            "subtask": getObjectData(client_subtask),
+            "subtask":  getObjectData(client_subtask),
             "task": getObjectData(client_task),
             "project": getObjectData(client_project),
         }
@@ -32,7 +32,7 @@ def clientsAllData():
     return dataset
 
 def getObjectData(objects):
-    dict = []
+    dict = {}
     for obj in objects:
         return {
             "title": obj.title,
@@ -41,6 +41,7 @@ def getObjectData(objects):
             "daysLeft": obj.daysLeft,
         }
         dict.append(res)
+        
     
     return dict
 
