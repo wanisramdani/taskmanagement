@@ -6,9 +6,20 @@
 
 for win10
 >python -m venv c:\my_path\venv
+
 >.\venv\Scripts\activate
+
 > pip install -r requirements.txt
+
 (I didn't test it)
+
+make sure your windows allowes running powershells scripts
+if you getting this error:
+
+`cannot be loaded because running scripts is disabled on this system`
+
+then run this cmd in powershell as administrator
+> Set-ExecutionPolicy RemoteSigned
 
 ---
 
@@ -16,7 +27,9 @@ for ubuntu
 cd to base project and run:
 
 >python -m venv venv
+
 >source venv/bin/activate
+
 > pip install -r requirements.txt
 
 # To run the project
