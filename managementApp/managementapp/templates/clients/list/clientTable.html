@@ -1,0 +1,34 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy addClientForm form.helper %}
+{% block content %}
+
+<div class="container-lg">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2><b>CLIENTS</b></h2></div>
+                 
+            </div>
+
+            <table class="table table-bordered" id="client-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% include "includes/clientAddForm.html" %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="{% url 'js/crud.js' %}"></script>
+
+{% endblock %}

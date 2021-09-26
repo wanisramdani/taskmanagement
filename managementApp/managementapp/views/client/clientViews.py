@@ -14,8 +14,8 @@ def clientList(request):
             return redirect("clients:clientList")
     else:
         addClientForm = forms.addClient()
-        
-    return render(request, 'clients/list/clientList.html', {
+    # clientList
+    return render(request, 'clients/list/clientTable.html', {
         'clientsList': Client.objects.all(),
         'addClientForm': addClientForm})
 
