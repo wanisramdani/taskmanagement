@@ -32,3 +32,11 @@ PS. I used 9000 with another intern since the default one was in use
 
 for this project I used sqlite to avoid configuration and all that pain.
 I included the database with the project
+
+
+# API:
+
+localhost:9000/swagger/
+
+localhost:9000/api/
+
